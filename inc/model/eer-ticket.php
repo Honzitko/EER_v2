@@ -231,18 +231,27 @@ class EER_Ticket {
 	}
 
 
-	public function is_ticket_buy_enabled($ticket_id, $ticket_data = null) {
-		if (!$ticket_data) {
-			$ticket_data = $this->get_ticket_data($ticket_id);
-		}
+       /**
+        * Check if ticket is available for purchase.
+        *
+        * @param int        $ticket_id
+        * @param object|null $ticket_data Optional ticket data to avoid extra DB call.
+        * @param int|null    $level_id    Optional level ID.
+        *
+        * @return bool
+        */
+       public function is_ticket_buy_enabled($ticket_id, $ticket_data = null, $level_id = null) {
+               if (!$ticket_data) {
+                       $ticket_data = $this->get_ticket_data($ticket_id);
+               }
 
-		//TODO: add level
-		if (intval($ticket_data->is_solo) === 1) {
-			return EER()->dancing_as->eer_is_solo_registration_enabled($ticket_id);
-		} else {
-			return EER()->dancing_as->eer_is_leader_registration_enabled($ticket_id) || EER()->dancing_as->eer_is_followers_registration_enabled($ticket_id);
-		}
-	}
+               if (intval($ticket_data->is_solo) === 1) {
+                       return EER()->dancing_as->eer_is_solo_registration_enabled($ticket_id, $level_id);
+               } else {
+                       return EER()->dancing_as->eer_is_leader_registration_enabled($ticket_id, $level_id) ||
+                               EER()->dancing_as->eer_is_followers_registration_enabled($ticket_id, $level_id);
+               }
+       }
 
 
 	public function get_ticket_data($ticket_id) {
