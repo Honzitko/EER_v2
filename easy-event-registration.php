@@ -6,7 +6,7 @@
  * Version: 1.3.3
  * Author: Zbyněk Nedoma
  * Author URI: https://easyschoolregistration.com/
- * License: A "Slug" license name e.g. GPL12
+ * License: GPL-3.0-or-later
  * Plugin Slug: eer
  */
 
