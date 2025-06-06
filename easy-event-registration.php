@@ -15,6 +15,7 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
+require_once __DIR__ . "/polyfill.php";
 
 if (!class_exists('Easy_Event_Registration')) {
 
