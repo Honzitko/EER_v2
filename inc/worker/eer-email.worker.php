@@ -43,15 +43,14 @@ class EER_Worker_Email {
 	public function send_ticket_email($email, $subject, $body, $event_data, $attachments = []) {
 		add_filter('wp_mail_content_type', [&$this, 'set_html_content_type']);
 
-		$headers = [
-			'From:' . EER()->event->eer_get_event_option($event_data, 'from_name') . ' <' . EER()->event->eer_get_event_option($event_data, 'from_email') . '>',
-			'Content-Type' => 'text/html',
-			'charset=UTF-8',
-		];
+                $headers = [
+                        'From: ' . EER()->event->eer_get_event_option($event_data, 'from_name') . ' <' . EER()->event->eer_get_event_option($event_data, 'from_email') . '>',
+                        'Content-Type: text/html; charset=UTF-8',
+                ];
 
-		if (EER()->event->eer_get_event_option($event_data, 'bcc_email')) {
-			$headers = array_merge($headers, ["Bcc:" . EER()->event->eer_get_event_option($event_data, 'from_name') . "<" . EER()->event->eer_get_event_option($event_data, 'bcc_email') . ">"]);
-		}
+                if (EER()->event->eer_get_event_option($event_data, 'bcc_email')) {
+                        $headers[] = 'Bcc: ' . EER()->event->eer_get_event_option($event_data, 'from_name') . ' <' . EER()->event->eer_get_event_option($event_data, 'bcc_email') . '>';
+                }
 
 		$send = wp_mail($email, $subject, $body, $headers, $attachments);
 
