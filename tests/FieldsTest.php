@@ -32,4 +32,15 @@ class FieldsTest extends TestCase
     {
         $this->assertSame("O\\'Reilly", $this->fields->sanitize('html', "O'Reilly"));
     }
+
+    public function test_json_sanitize()
+    {
+        $data = ['a' => 1, 'b' => true];
+        $this->assertSame($data, $this->fields->sanitize('json', $data));
+    }
+
+    public function test_default_sanitize()
+    {
+        $this->assertSame('Hello', $this->fields->sanitize('unknown', '<b>Hello</b>'));
+    }
 }
