@@ -2,6 +2,10 @@
 
 Changelog
 -------
+2.0 - 01.01.2024
+
+- Update: Bumped version number
+
 1.3.3 - 11.11.2020
 
 - New: Confirm button styles
