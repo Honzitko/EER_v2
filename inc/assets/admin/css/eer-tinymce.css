@@ -1,0 +1,12 @@
+.mce-eer-tinymce-button button i, .mce-eer-tinymce-button button span {
+  float: left; }
+
+.mce-eer-tinymce-button button i {
+  color: #556 !important;
+  font-family: dashicons;
+  font-size: 19px; }
+
+.mce-eer-tinymce-button button span {
+  display: block;
+  margin-top: 3px;
+  margin-left: 3px; }
