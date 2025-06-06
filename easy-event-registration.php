@@ -3,10 +3,10 @@
  * Plugin Name: Easy Event Registration
  * Plugin URI: https://easyschoolregistration.com/
  * Description: System for Easy Event Registration
- * Version: 1.3.3
- * Author: Zbyněk Nedoma
+ * Version: 2.0
+ * Author: Jan Dosta
  * Author URI: https://easyschoolregistration.com/
- * License: A "Slug" license name e.g. GPL12
+ * License: MIT
  * Plugin Slug: eer
  */
 
@@ -199,7 +199,7 @@ if (!class_exists('Easy_Event_Registration')) {
 
 		private function setup_constants() {
 			define('EER_SLUG', 'eer');
-			define('EER_VERSION', '1.3.3');
+                       define('EER_VERSION', '2.0');
 			// Plugin Root File.
 			if (!defined('EER_PLUGIN_FILE')) {
 				define('EER_PLUGIN_FILE', __FILE__);
@@ -361,7 +361,7 @@ $edd_updater = new EER_SL_Plugin_Updater(EER_SL_STORE_URL, EER_PLUGIN_FILE, [
 	'version'   => EER_VERSION,        // current version number
 	'license'   => $license_key,    // license key (used get_option above to retrieve from DB)
 	'item_name' => EER_PLUGIN_NAME,
-	'author'    => 'zbynek',  // author of this plugin
+       'author'    => 'Jan Dosta',  // author of this plugin
 	'url'       => home_url(),
 	'beta'      => false
 ]);

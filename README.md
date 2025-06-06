@@ -2,6 +2,11 @@
 
 Changelog
 -------
+2.0 - 06.06.2025
+
+- Update: set author to Jan Dosta
+- Update: bump version to 2.0
+
 1.3.3 - 11.11.2020
 
 - New: Confirm button styles
@@ -167,4 +172,4 @@ Changelog
 
 ## Running tests
 
-Ensure PHP 8.1 and PHPUnit are installed, then execute `phpunit` from the repository root. The configuration file `phpunit.xml` is provided in the project.
+First install dependencies with `composer install`, then execute `vendor/bin/phpunit`. The configuration file `phpunit.xml` is provided in the project.

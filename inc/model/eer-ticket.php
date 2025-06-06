@@ -236,8 +236,7 @@ class EER_Ticket {
 			$ticket_data = $this->get_ticket_data($ticket_id);
 		}
 
-		//TODO: add level
-		if (intval($ticket_data->is_solo) === 1) {
+               if (intval($ticket_data->is_solo) === 1) {
 			return EER()->dancing_as->eer_is_solo_registration_enabled($ticket_id);
 		} else {
 			return EER()->dancing_as->eer_is_leader_registration_enabled($ticket_id) || EER()->dancing_as->eer_is_followers_registration_enabled($ticket_id);
