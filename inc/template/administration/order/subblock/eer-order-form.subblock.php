@@ -140,7 +140,7 @@ class EER_Template_Order_Edit_Form
 
 	public static function input_hosting($event_data)
 	{
-		if (intval(EER()->event->eer_get_event_option($event_data, 'offer_hosting_enabled', -1)) === 1) {
+               if (intval(EER()->event->eer_get_event_option($event_data, 'hosting_enabled', -1)) === 1) {
 			?>
 			<tr>
 				<th><?php _e('Offer hosting', 'easy-event-registration'); ?></th>
