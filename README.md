@@ -167,4 +167,4 @@ Changelog
 
 ## Running tests
 
-Install PHPUnit and execute `phpunit` from the repository root. The configuration file `phpunit.xml` is provided in the project.
+Ensure PHP 8.1 and PHPUnit are installed, then execute `phpunit` from the repository root. The configuration file `phpunit.xml` is provided in the project.
