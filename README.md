@@ -165,3 +165,6 @@ Changelog
 - Fix: Solo tickets show / hide
 - Fix: Lots of small bug fixes
 
+## Running tests
+
+Install PHPUnit and execute `phpunit` from the repository root. The configuration file `phpunit.xml` is provided in the project.
