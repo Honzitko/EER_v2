@@ -145,7 +145,7 @@ Changelog
 
 1.1.3 - 1.11.2018
 
-- Fix: Fixed ticket summery generation
+- Fix: Fixed ticket summary generation
 
 1.1.2 - 31.10.2018
 

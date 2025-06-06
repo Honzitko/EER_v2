@@ -80,8 +80,8 @@ class EER_Worker_Ticket {
 				], ['ticket_id' => $ticket_id, 'level_id' => null]);
 			}
 		} else {
-			$old_summery = EER()->ticket_summary->eer_get_ticket_summaries($ticket_id);
-			foreach ($old_summery as $summary_key => $summary) {
+                    $old_summary = EER()->ticket_summary->eer_get_ticket_summaries($ticket_id);
+                    foreach ($old_summary as $summary_key => $summary) {
 				if ($summary->level_id !== null) {
 					$level = $ticket_settings->levels->{$summary->level_id};
 
