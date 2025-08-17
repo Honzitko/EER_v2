@@ -95,13 +95,22 @@ class EER_Enqueue_Scripts {
 	}
 
 
-	private static function eer_include_admin_scripts() {
-		wp_localize_script('eer_admin_events_script', 'eer_ajax_object', [
+        private static function eer_include_admin_scripts() {
+                wp_localize_script('eer_admin_events_script', 'eer_ajax_object', [
                         'ajaxurl' => admin_url('admin-ajax.php'),
                         'nonce'   => wp_create_nonce('eer_ajax_nonce'),
                 ]);
-		wp_enqueue_style('eer_admin_style', EER_PLUGIN_URL . 'inc/assets/admin/css/eer-admin-settings.css', [], EER_VERSION);
-	}
+                wp_enqueue_style('eer_admin_style', EER_PLUGIN_URL . 'inc/assets/admin/css/eer-admin-settings.css', [], EER_VERSION);
+
+                // ensure validation library is available for admin forms
+                wp_enqueue_script(
+                        'eer_jquery_validate',
+                        EER_PLUGIN_URL . 'libs/jquery-validation/jquery.validate.min.js',
+                        [ 'jquery' ],
+                        EER_VERSION,
+                        true
+                );
+        }
 
 
 	private static function eer_include_datatable_scripts() {
