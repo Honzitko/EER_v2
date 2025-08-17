@@ -41,7 +41,7 @@ class EER_Event_Tickets_Filter_Template {
 		if (isset($_POST['eer_choose_ticket_submit']) && isset($_POST['eer_ticket'])) {
 			update_user_meta(get_current_user_id(), 'eer_user_ticket_id', $_POST['eer_ticket']);
 			return $_POST['eer_ticket'];
-		} else if ((count($user_saved_ticket) > 0) && $ticket_data && (intval($ticket_data->event_id) === $selected_event)) {
+		} elseif ((count($user_saved_ticket) > 0) && $ticket_data && (intval($ticket_data->event_id) === $selected_event)) {
 			return $user_saved_ticket[0];
 		} else {
 			$tickets = EER()->ticket->get_tickets_by_event(($selected_event !== null) ? $selected_event : apply_filters('eer_all_events_select_get', []));

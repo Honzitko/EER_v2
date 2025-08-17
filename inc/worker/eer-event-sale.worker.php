@@ -147,7 +147,7 @@ class EER_Worker_Event_Sale {
 				} else {
 					if (EER()->dancing_as->eer_is_leader($ticket->dancing_as)) {
 						$test_full = EER()->dancing_as->eer_is_leader_registration_enabled($ticket_id, ((isset($ticket->level_id) && ($ticket->level_id !== '')) ? $ticket->level_id : null));
-					} else if (EER()->dancing_as->eer_is_follower($ticket->dancing_as)) {
+					} elseif (EER()->dancing_as->eer_is_follower($ticket->dancing_as)) {
 						$test_full = EER()->dancing_as->eer_is_followers_registration_enabled($ticket_id, ((isset($ticket->level_id) && ($ticket->level_id !== '')) ? $ticket->level_id : null));
 					}
 				}

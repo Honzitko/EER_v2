@@ -213,7 +213,7 @@ class EER_Event_Sale_Couple_Worker {
 
 					$return_tickets['paired'][$ticket_id][$sold_ticket_id]['user']['sold_ticket_id'] = (int) $sold_ticket_id;
 					$return_tickets['paired'][$ticket_id][$sold_ticket_id]['partner']['sold_ticket_id'] = (int) $partner_reg[0]->id;
-				} else if (EER()->pairing_mode->is_auto_confirmation_enabled($ticket_data->pairing_mode)) {
+				} elseif (EER()->pairing_mode->is_auto_confirmation_enabled($ticket_data->pairing_mode)) {
 					// Confirm all registrations until course is full
 					$wpdb->update($wpdb->prefix . 'eer_sold_tickets', [
 						'status' => EER_Enum_Sold_Ticket_Status::CONFIRMED

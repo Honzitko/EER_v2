@@ -351,7 +351,7 @@ class EER_Template_Settings_Helper
 
 		if (is_string($class)) {
 			$class = sanitize_html_class($class);
-		} else if (is_array($class)) {
+		} elseif (is_array($class)) {
 			$class = array_values(array_map('sanitize_html_class', $class));
 			$class = implode(' ', array_unique($class));
 		}

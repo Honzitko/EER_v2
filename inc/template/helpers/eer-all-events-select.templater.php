@@ -42,9 +42,9 @@ class EER_Template_All_Events_Select {
 		if (isset($_POST['eer_choose_event_submit']) && isset($_POST['eer_event'])) {
 			update_user_meta(get_current_user_id(), 'eer_user_event_id', $_POST['eer_event']);
 			return $_POST['eer_event'];
-		} else if (count($user_saved_event) > 0) {
+		} elseif (count($user_saved_event) > 0) {
 			return $user_saved_event[0];
-		} else if ($events) {
+		} elseif ($events) {
 			return reset($events);
 		} else {
 			$events = EER()->event->load_events_without_data();

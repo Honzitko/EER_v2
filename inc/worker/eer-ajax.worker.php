@@ -24,15 +24,15 @@ class EER_Worker_Ajax {
 				if ($sold_ticket->status == EER_Enum_Sold_Ticket_Status::CONFIRMED) {
 					if (EER()->ticket->eer_is_solo($sold_ticket->ticket_id)) {
 						$update['registered_tickets'] = $summary->registered_tickets - 1;
-					} else if (EER()->dancing_as->eer_is_follower($sold_ticket->dancing_as)) {
+					} elseif (EER()->dancing_as->eer_is_follower($sold_ticket->dancing_as)) {
 						$update['registered_followers'] = $summary->registered_followers - 1;
-					} else if (EER()->dancing_as->eer_is_leader($sold_ticket->dancing_as)) {
+					} elseif (EER()->dancing_as->eer_is_leader($sold_ticket->dancing_as)) {
 						$update['registered_leaders'] = $summary->registered_leaders - 1;
 					}
-				} else if ($sold_ticket->status == EER_Enum_Sold_Ticket_Status::WAITING) {
+				} elseif ($sold_ticket->status == EER_Enum_Sold_Ticket_Status::WAITING) {
 					if (EER()->dancing_as->eer_is_follower($sold_ticket->dancing_as)) {
 						$update['waiting_followers'] = $summary->waiting_followers - 1;
-					} else if (EER()->dancing_as->eer_is_leader($sold_ticket->dancing_as)) {
+					} elseif (EER()->dancing_as->eer_is_leader($sold_ticket->dancing_as)) {
 						$update['waiting_leaders'] = $summary->waiting_leaders - 1;
 					}
 				}
@@ -87,15 +87,15 @@ class EER_Worker_Ajax {
 			if ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::CONFIRMED) {
 				if (EER()->ticket->eer_is_solo($sold_ticket_data->ticket_id)) {
 					$update['registered_tickets'] = $summary->registered_tickets - 1;
-				} else if (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
 					$update['registered_followers'] = $summary->registered_followers - 1;
-				} else if (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
 					$update['registered_leaders'] = $summary->registered_leaders - 1;
 				}
-			} else if ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::WAITING) {
+			} elseif ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::WAITING) {
 				if (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
 					$update['waiting_followers'] = $summary->waiting_followers - 1;
-				} else if (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
 					$update['waiting_leaders'] = $summary->waiting_leaders - 1;
 				}
 			}
@@ -177,19 +177,19 @@ class EER_Worker_Ajax {
 			if ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::DELETED) {
 				if ($is_solo) {
 					$update['registered_tickets'] = $summary->registered_tickets + 1;
-				} else if (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
 					$update['registered_followers'] = $summary->registered_followers + 1;
-				} else if (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
 					$update['registered_leaders'] = $summary->registered_leaders + 1;
 				}
-			} else if ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::WAITING) {
+			} elseif ($sold_ticket_data->status == EER_Enum_Sold_Ticket_Status::WAITING) {
 				if ($is_solo) {
 					$update['registered_tickets'] = $summary->registered_tickets + 1;
 					$update['waiting_tickets']    = $summary->waiting_tickets - 1;
-				} else if (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_follower($sold_ticket_data->dancing_as)) {
 					$update['registered_followers'] = $summary->registered_followers + 1;
 					$update['waiting_followers']    = $summary->waiting_followers - 1;
-				} else if (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
+				} elseif (EER()->dancing_as->eer_is_leader($sold_ticket_data->dancing_as)) {
 					$update['registered_leaders'] = $summary->registered_leaders + 1;
 					$update['waiting_leaders']    = $summary->waiting_leaders - 1;
 				}

@@ -11,7 +11,7 @@ class EER_Database
 	{
 		if (get_site_option('eer_db_version') == NULL) {
 			self::database_install();
-		} else if (version_compare(get_site_option('eer_db_version', ''), EER_VERSION, '<')) {
+		} elseif (version_compare(get_site_option('eer_db_version', ''), EER_VERSION, '<')) {
 			self::database_update();
 		}
 	}

@@ -343,7 +343,7 @@ if (!class_exists('Easy_Event_Registration')) {
 
 			if (file_exists($mofile_global)) {
 				return load_textdomain('easy-event-registration', $mofile_global);
-			} else if (file_exists($mofile_local)) {
+			} elseif (file_exists($mofile_local)) {
 				return load_textdomain('easy-event-registration', $mofile_local);
 			} else {
 				return load_plugin_textdomain('easy-event-registration', false, dirname(plugin_basename(__FILE__)) . '/languages/');

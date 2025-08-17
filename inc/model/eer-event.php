@@ -475,7 +475,7 @@ class EER_Event {
 
 		if ( $tab && ! empty( $sections[ $tab ] ) ) {
 			$tabs = $sections[ $tab ];
-		} else if ( $tab ) {
+		} elseif ( $tab ) {
 			$tabs = false;
 		}
 

@@ -131,7 +131,7 @@ class EER_Ticket {
 
 		if ($tab && !empty($sections[$tab])) {
 			$tabs = $sections[$tab];
-		} else if ($tab) {
+		} elseif ($tab) {
 			$tabs = false;
 		}
 

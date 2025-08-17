@@ -137,9 +137,9 @@ class EER_Worker_Ticket {
 				$return_data['has_levels'] = (isset($data[$key]['levels_enabled']) && (intval($data[$key]['levels_enabled']) === 1));
 
 				$return_data[$key] = json_encode(EER()->fields->eer_sanitize_ticket_settings($data[$key]), JSON_FORCE_OBJECT);
-			} else if (($field['type'] === 'boolean') && (!isset($data[$key]) || (isset($data[$key]) && !is_bool($data[$key])))) {
+			} elseif (($field['type'] === 'boolean') && (!isset($data[$key]) || (isset($data[$key]) && !is_bool($data[$key])))) {
 				$return_data[$key] = isset($data[$key]) && ($data[$key] === '1');
-			} else if (($field['required'] && !$is_update) || isset($data[$key])) {
+			} elseif (($field['required'] && !$is_update) || isset($data[$key])) {
 				$return_data[$key] = EER()->fields->sanitize($field['type'], $data[$key]);
 			}
 		}
