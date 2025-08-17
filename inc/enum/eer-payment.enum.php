@@ -82,7 +82,7 @@ class EER_Enum_Payment
 			if ($user_payment->payment !== null) {
 				if (floatval($user_payment->to_pay) == $user_payment->payment) {
 					return EER_Enum_Payment::PAID;
-				} else if (floatval($user_payment->to_pay) > $user_payment->payment) {
+				} elseif (floatval($user_payment->to_pay) > $user_payment->payment) {
 					return EER_Enum_Payment::NOT_PAID_ALL;
 				} else {
 					return EER_Enum_Payment::OVER_PAID;

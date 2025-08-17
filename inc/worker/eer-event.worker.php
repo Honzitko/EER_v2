@@ -89,7 +89,7 @@ class EER_Worker_Event {
 				}
 
 				$return_data[ $key ] = json_encode( EER()->fields->eer_sanitize_event_settings( $data[ $key ] ) );
-			} else if ( ( $field['required'] && ! $is_update ) || isset( $data[ $key ] ) ) {
+			} elseif ( ( $field['required'] && ! $is_update ) || isset( $data[ $key ] ) ) {
 				$return_data[ $key ] = EER()->fields->sanitize( $field['type'], $data[ $key ] );
 			}
 		}

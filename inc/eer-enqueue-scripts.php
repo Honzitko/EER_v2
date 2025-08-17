@@ -58,7 +58,7 @@ class EER_Enqueue_Scripts {
 			self::eer_include_datatable_scripts();
 			wp_enqueue_script('tinymce');
 			wp_enqueue_style('wp-color-picker');
-		} else if (self::check_page_base(EER_Template_Order::MENU_SLUG) || self::check_page_base(EER_Template_Sold_Ticket::MENU_SLUG) || self::check_page_base(EER_Template_Payment_Emails::MENU_SLUG) || self::check_page_base(EER_Template_Tickets_In_Numbers::MENU_SLUG)) {
+		} elseif (self::check_page_base(EER_Template_Order::MENU_SLUG) || self::check_page_base(EER_Template_Sold_Ticket::MENU_SLUG) || self::check_page_base(EER_Template_Payment_Emails::MENU_SLUG) || self::check_page_base(EER_Template_Tickets_In_Numbers::MENU_SLUG)) {
 			wp_enqueue_script('eer_admin_events_script', EER_PLUGIN_URL . 'inc/assets/admin/js/eer-production.js', ['jquery']);
 			self::eer_include_admin_scripts();
 			self::eer_include_datatable_scripts();

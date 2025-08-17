@@ -336,7 +336,7 @@ class EER_Models_Settings_Helper_Templater {
 
 		if (is_string($class)) {
 			$class = sanitize_html_class($class);
-		} else if (is_array($class)) {
+		} elseif (is_array($class)) {
 			$class = array_values(array_map('sanitize_html_class', $class));
 			$class = implode(' ', array_unique($class));
 		}
@@ -357,7 +357,7 @@ class EER_Models_Settings_Helper_Templater {
 	public static function eer_check_default_value($args, $key, $default = '') {
 		if (isset($args['data']) && !empty($args['data']) && isset($args['data']->$key)) {
 			return $args['data']->$key;
-		} else if (isset($args['std'])) {
+		} elseif (isset($args['std'])) {
 			return $args['std'];
 		}
 
