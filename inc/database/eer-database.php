@@ -39,10 +39,11 @@ class EER_Database
 		include_once 'updates/eer-update.1.1.2.php';
 		include_once 'updates/eer-update.1.1.3.php';
 		include_once 'updates/eer-update.1.2.3.php';
-		include_once 'updates/eer-update.1.2.6.php';
-		include_once 'updates/eer-update.1.3.2.php';
-		update_option('eer_db_version', EER_VERSION);
-	}
+                include_once 'updates/eer-update.1.2.6.php';
+                include_once 'updates/eer-update.1.3.2.php';
+                include_once 'updates/eer-update.1.3.3.php';
+                update_option('eer_db_version', EER_VERSION);
+        }
 
 	public static function create_tables()
 	{
@@ -50,15 +51,15 @@ class EER_Database
 
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE {$wpdb->prefix}eer_events (
-			id bigint(20) NOT NULL AUTO_INCREMENT,
-			is_passed boolean NOT NULL DEFAULT FALSE,
-			title mediumtext NOT NULL,
-			sale_start timestamp NOT NULL,
-			sale_end timestamp NOT NULL,
-			event_settings longtext,
-			PRIMARY KEY id (id)
-		) $charset_collate;";
+                $sql = "CREATE TABLE {$wpdb->prefix}eer_events (
+                        id bigint(20) NOT NULL AUTO_INCREMENT,
+                        is_passed boolean NOT NULL DEFAULT FALSE,
+                        title mediumtext NOT NULL,
+                        sale_start timestamp NULL DEFAULT NULL,
+                        sale_end timestamp NULL DEFAULT NULL,
+                        event_settings longtext,
+                        PRIMARY KEY id (id)
+                ) $charset_collate;";
 
 		$sql .= "CREATE TABLE {$wpdb->prefix}eer_tickets (
 			id bigint(20) NOT NULL AUTO_INCREMENT,

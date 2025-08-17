@@ -1,6 +1,13 @@
 <?php
 // Define minimal WordPress constant to prevent early exit.
-define('ABSPATH', __DIR__);
+define('ABSPATH', __DIR__ . '/');
+
+// Stub WordPress hooks.
+if (!function_exists('add_action')) {
+    function add_action($tag, $function_to_add) {
+        // no-op for tests
+    }
+}
 
 // Simple autoloader for plugin classes.
 spl_autoload_register(function ($class) {
