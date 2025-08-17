@@ -48,15 +48,15 @@ class EER_Enqueue_Scripts {
 
 	public static function add_admin_scripts() {
 
-		$eer_scripts = [
-			EER_Template_Payments::MENU_SLUG => [
-				'eer_scripts_default_admin',
-				'eer_scripts_datatable',
-			],
-			EER_Admin::ADMIN_MENU_SLUG       => [
-				'eer_scripts_default_admin',
-			]
-		];
+                $eer_scripts = [
+                        EER_Template_Payments::MENU_SLUG => [
+                                'eer_scripts_default_admin',
+                                'eer_scripts_datatable',
+                        ],
+                        EER_Admin::ADMIN_MENU_SLUG       => [
+                                'eer_scripts_admin_home',
+                        ]
+                ];
 
 		if (self::check_page_base(EER_Template_Event::MENU_SLUG) || self::check_page_base(EER_Template_Ticket::MENU_SLUG)) {
 			wp_enqueue_script('eer_admin_events_script', EER_PLUGIN_URL . 'inc/assets/admin/js/eer-production.js', ['jquery', 'wp-color-picker']);
@@ -133,6 +133,11 @@ class EER_Enqueue_Scripts {
 		wp_enqueue_script('eer_bootstrap_script', EER_PLUGIN_URL . 'libs/bootstrap/js/bootstrap.min.js', ['jquery'], EER_VERSION);
 	}
 
+	public static function eer_scripts_admin_home_callback() {
+		wp_enqueue_style('eer_admin_style', EER_PLUGIN_URL . 'inc/assets/admin/css/eer-admin-settings.css', [], EER_VERSION);
+		wp_enqueue_style('eer_admin_bootstrap_style', EER_PLUGIN_URL . 'libs/bootstrap/css/bootstrap-ofic.css', [], EER_VERSION);
+	}
+
 
 	public static function eer_scripts_datatable_callback() {
 		wp_enqueue_script('eer_dataTables_script', EER_PLUGIN_URL . 'libs/datatable/datatables.min.js', ['jquery'], EER_VERSION);
@@ -161,4 +166,5 @@ add_action('admin_enqueue_scripts', ['EER_Enqueue_Scripts', 'add_admin_scripts']
 
 //Script calls
 add_action('eer_scripts_default_admin', ['EER_Enqueue_Scripts', 'eer_scripts_default_admin_callback']);
+add_action('eer_scripts_admin_home', ['EER_Enqueue_Scripts', 'eer_scripts_admin_home_callback']);
 add_action('eer_scripts_datatable', ['EER_Enqueue_Scripts', 'eer_scripts_datatable_callback']);
