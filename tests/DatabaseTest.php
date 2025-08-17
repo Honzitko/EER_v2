@@ -1,6 +1,16 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+if (!defined('ABSPATH')) {
+    define('ABSPATH', __DIR__ . '/');
+}
+
+if (!function_exists('add_action')) {
+    function add_action($tag, $function_to_add) {
+        // no-op for tests
+    }
+}
+
 require_once __DIR__ . '/../inc/database/eer-database.php';
 
 class DatabaseTest extends TestCase
@@ -19,3 +29,4 @@ class DatabaseTest extends TestCase
         $this->assertStringContainsString('sale_end timestamp NULL', $GLOBALS['last_sql']);
     }
 }
+
