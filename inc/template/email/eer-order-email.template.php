@@ -15,8 +15,14 @@ class EER_Template_Order_Email {
 
 		$user = get_user_by('ID', $order->user_id);
 
-		$subject = stripcslashes(EER()->event->eer_get_event_option($event_data, 'order_email_subject', ''));
-		$body    = stripcslashes(EER()->event->eer_get_event_option($event_data, 'order_email_body', null));
+                $subject = stripcslashes(EER()->event->eer_get_event_option($event_data, 'order_email_subject', ''));
+                if (empty($subject)) {
+                        $subject = stripcslashes(EER()->settings->eer_get_option('default_order_email_subject', ''));
+                }
+                $body    = stripcslashes(EER()->event->eer_get_event_option($event_data, 'order_email_body', null));
+                if ($body === null || $body === '') {
+                        $body = stripcslashes(EER()->settings->eer_get_option('default_order_email_body', ''));
+                }
 
 		if (!empty($body)) {
 			$tags = EER()->tags->get_tags('order_email');

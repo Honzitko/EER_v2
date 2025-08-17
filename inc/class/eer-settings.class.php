@@ -33,9 +33,9 @@ class EER_Settings
 					],
 				],
 			]),
-			'style'      => apply_filters( 'eer_settings_style', [
-				'main'            => [
-				],
+                        'style'      => apply_filters( 'eer_settings_style', [
+                                'main'            => [
+                                ],
 				'normal_ticket'             => [
 					'normal_ticket_background'  => [
 						'id'       => 'normal_ticket_background',
@@ -271,11 +271,32 @@ class EER_Settings
 						'selector' => '.eer-tickets-sale-wrapper .eer-ticket-shop-form .btn.btn-default:hover',
 						'property' => 'font',
 					],
-				],
-			] ),
-			'licenses' => apply_filters('eer_settings_licenses', []),
-			'extensions' => apply_filters('eer_settings_extensions', []),
-		];
+                                ],
+                        ] ),
+                        'communication' => apply_filters('eer_settings_communication', [
+                                'emails' => [
+                                        'default_order_email_subject' => [
+                                                'id'   => 'default_order_email_subject',
+                                                'name' => __( 'Default Order Email Subject', 'easy-event-registration' ),
+                                                'type' => 'text',
+                                        ],
+                                        'default_order_email_body'    => [
+                                                'id'   => 'default_order_email_body',
+                                                'name' => __( 'Default Order Email Body', 'easy-event-registration' ),
+                                                'type' => 'full_editor',
+                                        ],
+                                ],
+                                'form'   => [
+                                        'registration_form_message' => [
+                                                'id'   => 'registration_form_message',
+                                                'name' => __( 'Registration Form Message', 'easy-event-registration' ),
+                                                'type' => 'full_editor',
+                                        ],
+                                ],
+                        ] ),
+                        'licenses' => apply_filters('eer_settings_licenses', []),
+                        'extensions' => apply_filters('eer_settings_extensions', []),
+                ];
 
 		return apply_filters('eer_registered_settings', $eer_settings);
 	}
@@ -294,19 +315,23 @@ class EER_Settings
 			'general' => apply_filters('eer_settings_sections_general', [
 				'main' => __('General', 'easy-event-registration'),
 			]),
-			'style' => apply_filters('eer_settings_sections_style', [
-				'main' => __('General', 'easy-event-registration'),
-				'normal_ticket' => __('Ticket', 'easy-event-registration'),
-				'sold_ticket' => __('Sold Ticket', 'easy-event-registration'),
-				'add_button' => __('Add Button', 'easy-event-registration'),
-				'remove_button' => __('Remove Button', 'easy-event-registration'),
-				'ticket_form' => __('Ticket Form', 'easy-event-registration'),
-				'user_form' => __('Registration Form', 'easy-event-registration'),
-				'confirm_button' => __('Confirm Button', 'easy-event-registration'),
-			]),
-			'licenses' => apply_filters('eer_settings_sections_licenses', []),
-			'extensions' => apply_filters('eer_settings_sections_extensions', []),
-		];
+                        'style' => apply_filters('eer_settings_sections_style', [
+                                'main' => __('General', 'easy-event-registration'),
+                                'normal_ticket' => __('Ticket', 'easy-event-registration'),
+                                'sold_ticket' => __('Sold Ticket', 'easy-event-registration'),
+                                'add_button' => __('Add Button', 'easy-event-registration'),
+                                'remove_button' => __('Remove Button', 'easy-event-registration'),
+                                'ticket_form' => __('Ticket Form', 'easy-event-registration'),
+                                'user_form' => __('Registration Form', 'easy-event-registration'),
+                                'confirm_button' => __('Confirm Button', 'easy-event-registration'),
+                        ]),
+                        'communication' => apply_filters('eer_settings_sections_communication', [
+                                'emails' => __( 'Emails', 'easy-event-registration' ),
+                                'form'   => __( 'Form', 'easy-event-registration' ),
+                        ]),
+                        'licenses' => apply_filters('eer_settings_sections_licenses', []),
+                        'extensions' => apply_filters('eer_settings_sections_extensions', []),
+                ];
 
 		$sections = apply_filters('eer_settings_sections', $sections);
 
@@ -317,16 +342,17 @@ class EER_Settings
 	public function eer_get_settings_tabs()
 	{
 
-		$settings = $this->eer_get_registered_settings();
+                $settings = $this->eer_get_registered_settings();
 
-		$tabs = [];
-		$tabs['general'] = __('General', 'easy-event-registration');
-		$tabs['style'] = __('Style', 'easy-event-registration');
+                $tabs = [];
+                $tabs['general'] = __('General', 'easy-event-registration');
+                $tabs['style'] = __('Style', 'easy-event-registration');
+                $tabs['communication'] = __('Communication', 'easy-event-registration');
 
-		if (!empty($settings['extensions'])) {
-			$tabs['extensions'] = __('Extensions', 'easy-event-registration');
-		}
-		if (!empty($settings['licenses'])) {
+                if (!empty($settings['extensions'])) {
+                        $tabs['extensions'] = __('Extensions', 'easy-event-registration');
+                }
+                if (!empty($settings['licenses'])) {
 			$tabs['licenses'] = __('Licenses', 'easy-event-registration');
 		}
 
