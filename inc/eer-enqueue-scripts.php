@@ -16,7 +16,10 @@ class EER_Enqueue_Scripts {
 		wp_register_style('eer_web_style', EER_PLUGIN_URL . 'inc/assets/web/css/eer-web.css', [], EER_VERSION);
 		wp_register_script('eer_web_script', EER_PLUGIN_URL . 'inc/assets/web/js/eer-web.js', ['jquery'], EER_VERSION);
 		wp_register_script('eer_spin_js_script', EER_PLUGIN_URL . 'libs/spin/js/spin.min.js', ['jquery'], EER_VERSION);
-		wp_localize_script('eer_web_script', 'eer_ajax_object', ['ajaxurl' => admin_url('admin-ajax.php')]);
+		wp_localize_script('eer_web_script', 'eer_ajax_object', [
+                        'ajaxurl' => admin_url('admin-ajax.php'),
+                        'nonce'   => wp_create_nonce('eer_ajax_nonce'),
+                ]);
 	}
 
 
@@ -36,7 +39,10 @@ class EER_Enqueue_Scripts {
 	private static function enqueue_web_js_scripts() {
 		wp_enqueue_script('eer_web_script', EER_PLUGIN_URL . 'inc/assets/web/js/eer-web.js', ['jquery'], EER_VERSION);
 		wp_enqueue_script('eer_spin_js_script', EER_PLUGIN_URL . 'libs/spin/js/spin.min.js', ['jquery'], EER_VERSION);
-		wp_localize_script('eer_web_script', 'eer_ajax_object', ['ajaxurl' => admin_url('admin-ajax.php')]);
+		wp_localize_script('eer_web_script', 'eer_ajax_object', [
+                        'ajaxurl' => admin_url('admin-ajax.php'),
+                        'nonce'   => wp_create_nonce('eer_ajax_nonce'),
+                ]);
 	}
 
 
@@ -90,7 +96,10 @@ class EER_Enqueue_Scripts {
 
 
 	private static function eer_include_admin_scripts() {
-		wp_localize_script('eer_admin_events_script', 'eer_ajax_object', ['ajaxurl' => admin_url('admin-ajax.php')]);
+		wp_localize_script('eer_admin_events_script', 'eer_ajax_object', [
+                        'ajaxurl' => admin_url('admin-ajax.php'),
+                        'nonce'   => wp_create_nonce('eer_ajax_nonce'),
+                ]);
 		wp_enqueue_style('eer_admin_style', EER_PLUGIN_URL . 'inc/assets/admin/css/eer-admin-settings.css', [], EER_VERSION);
 	}
 
@@ -105,7 +114,10 @@ class EER_Enqueue_Scripts {
 
 	public static function eer_scripts_default_admin_callback() {
 		wp_enqueue_script('eer_admin_events_script', EER_PLUGIN_URL . 'inc/assets/admin/js/eer-production.js', ['jquery'], EER_VERSION);
-		wp_localize_script('eer_admin_events_script', 'eer_ajax_object', ['ajaxurl' => admin_url('admin-ajax.php')]);
+		wp_localize_script('eer_admin_events_script', 'eer_ajax_object', [
+                        'ajaxurl' => admin_url('admin-ajax.php'),
+                        'nonce'   => wp_create_nonce('eer_ajax_nonce'),
+                ]);
 		wp_enqueue_style('eer_admin_style', EER_PLUGIN_URL . 'inc/assets/admin/css/eer-admin-settings.css', [], EER_VERSION);
 
 		wp_enqueue_style('eer_admin_bootstrap_style', EER_PLUGIN_URL . 'libs/bootstrap/css/bootstrap-ofic.css', [], EER_VERSION);

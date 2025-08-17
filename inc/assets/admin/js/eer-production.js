@@ -1,5 +1,9 @@
 jQuery(function ($) {
   $(document).ready(function () {
+    $.ajaxSetup({
+      data: { nonce: eer_ajax_object.nonce }
+    });
+
     $(".eer-toggle-on-change").each(function () {
       if ($(this).is(":checked")) {
         $($(this).data("show")).show();

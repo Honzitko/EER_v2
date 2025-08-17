@@ -3,6 +3,10 @@ var eer_submit_function = [];
 
 jQuery(function ($) {
   $(document).ready(function () {
+    $.ajaxSetup({
+      data: { nonce: eer_ajax_object.nonce }
+    });
+
     var max_height = 0;
     $(".eer-tickets .eer-ticket-body-wraper").each(function (key, ticket) {
       var ticket_outer_height = $(ticket).outerHeight();
