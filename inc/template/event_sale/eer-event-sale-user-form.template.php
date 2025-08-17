@@ -6,13 +6,17 @@ if (!defined('ABSPATH')) {
 
 class EER_Template_Event_Sale_User_Form {
 
-	public function print_content($event_id) {
-		$event_data = EER()->event->get_event_data($event_id);
-		?>
-		<form id="eer-ticket-shop-form" class="eer-ticket-shop-form"
-		      data-no-tickets="<?php _e('At least one ticket is required to select.', 'easy-event-registration'); ?>">
-			<div class="eer-form-tickets-header eer-clearfix">
-				<div class="eer-column-header"><span><?php _e('Item', 'easy-event-registration'); ?></span></div>
+        public function print_content($event_id) {
+                $event_data = EER()->event->get_event_data($event_id);
+                $form_message = stripcslashes(EER()->settings->eer_get_option('registration_form_message', ''));
+                ?>
+                <?php if (!empty($form_message)) { ?>
+                        <div class="eer-form-custom-message"><?php echo $form_message; ?></div>
+                <?php } ?>
+                <form id="eer-ticket-shop-form" class="eer-ticket-shop-form"
+                      data-no-tickets="<?php _e('At least one ticket is required to select.', 'easy-event-registration'); ?>">
+                        <div class="eer-form-tickets-header eer-clearfix">
+                                <div class="eer-column-header"><span><?php _e('Item', 'easy-event-registration'); ?></span></div>
 				<div class="eer-column-header eer-amount"><span><?php _e('Amount', 'easy-event-registration'); ?></span>
 				</div>
 				<div class="eer-column-header"><span><?php _e('Price', 'easy-event-registration'); ?></span></div>
