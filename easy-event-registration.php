@@ -338,7 +338,7 @@ if (!class_exists('Easy_Event_Registration')) {
 
 			$mofile = sprintf('%1$s-%2$s.mo', 'easy-event-registration', $locale);
 
-			$mofile_local  = trailingslashit(EER_PLUGIN_URL . 'languages') . $mofile;
+                       $mofile_local  = trailingslashit(EER_PLUGIN_DIR . 'languages') . $mofile;
 			$mofile_global = WP_LANG_DIR . '/easy-event-registration/' . $mofile;
 
 			if (file_exists($mofile_global)) {

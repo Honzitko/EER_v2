@@ -7,20 +7,32 @@ if (!defined('ABSPATH')) {
 
 class EER_Ajax {
 
-	public static function eer_process_order_callback() {
-		$worker_event_sale = new EER_Worker_Event_Sale();
-		wp_send_json($worker_event_sale->process_registration(json_decode(stripslashes($_POST['order_data']))), 200);
-	}
+       public static function eer_process_order_callback() {
+               check_ajax_referer('eer_ajax_nonce', 'nonce');
+
+               $order_data_raw = isset($_POST['order_data']) ? wp_unslash($_POST['order_data']) : '';
+               $order_data     = json_decode(stripslashes($order_data_raw));
+
+               $worker_event_sale = new EER_Worker_Event_Sale();
+
+               wp_send_json($worker_event_sale->process_registration($order_data), 200);
+       }
 
 
-	public static function eer_remove_order_callback() {
-		if (isset($_POST['order_id'])) {
-			wp_send_json(apply_filters('eer_remove_order', $_POST['order_id']));
-			wp_die();
-		}
-		echo -1;
-		wp_die();
-	}
+       public static function eer_remove_order_callback() {
+               check_ajax_referer('eer_ajax_nonce', 'nonce');
+
+               if (!current_user_can('manage_options')) {
+                       wp_send_json_error('Unauthorized', 403);
+               }
+
+               if (isset($_POST['order_id'])) {
+                       $order_id = absint($_POST['order_id']);
+                       wp_send_json(apply_filters('eer_remove_order', $order_id));
+               }
+
+               wp_send_json_error('Missing order_id', 400);
+       }
 
 
 	public static function eer_remove_order_forever_callback() {
@@ -33,14 +45,20 @@ class EER_Ajax {
 	}
 
 
-	public static function eer_remove_sold_ticket_callback() {
-		if (isset($_POST['sold_ticket_id'])) {
-			wp_send_json(apply_filters('eer_remove_sold_ticket', $_POST['sold_ticket_id']));
-			wp_die();
-		}
-		echo -1;
-		wp_die();
-	}
+       public static function eer_remove_sold_ticket_callback() {
+               check_ajax_referer('eer_ajax_nonce', 'nonce');
+
+               if (!current_user_can('manage_options')) {
+                       wp_send_json_error('Unauthorized', 403);
+               }
+
+               if (isset($_POST['sold_ticket_id'])) {
+                       $sold_ticket_id = absint($_POST['sold_ticket_id']);
+                       wp_send_json(apply_filters('eer_remove_sold_ticket', $sold_ticket_id));
+               }
+
+               wp_send_json_error('Missing sold_ticket_id', 400);
+       }
 
 
 	public static function eer_confirm_sold_ticket_callback() {
