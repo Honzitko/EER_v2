@@ -174,3 +174,17 @@ Changelog
 Run `composer install` to install the development dependencies. After that execute
 `vendor/bin/phpunit` from the repository root. The configuration file `phpunit.xml`
 is provided in the project.
+
+## Debugging
+
+Enable detailed plugin logging by defining the `EER_DEBUG` constant as `true`. Log
+messages are written to `eer-debug.log` in the plugin root directory.
+
+You can verify the logger independently by running the demo script:
+
+```
+php tests/debug_demo.php
+```
+
+The script writes a sample entry to `tests/debug.log` so you can confirm that
+debugging is working.

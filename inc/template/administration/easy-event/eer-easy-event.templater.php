@@ -8,10 +8,13 @@ if (!defined('ABSPATH')) {
 class EER_Template_Easy_Event
 {
 
-	public static function print_page()
-	{
-		?>
-		<div class="wrap eer-settings">
+        public static function print_page()
+        {
+                if (class_exists('EER_Debug')) {
+                        EER_Debug::log('Easy Event admin page accessed');
+                }
+                ?>
+                <div class="wrap eer-settings">
 			<h1 class="wp-heading-inline"><?php echo __('Easy Event Registration', 'easy-event-registration') . ' ' . __('(EER)', 'easy-event-registration'); ?></h1>
                         <h2><?php _e('All-in-One Registration Management Tool', 'easy-event-registration'); ?></h2>
 
