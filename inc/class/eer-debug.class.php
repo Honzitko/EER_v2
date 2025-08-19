@@ -29,6 +29,27 @@ class EER_Debug
         file_put_contents(self::$log_file, $entry, FILE_APPEND);
     }
 
+    public static function log_wp_error($error)
+    {
+        if (!($error instanceof WP_Error)) {
+            return;
+        }
+
+        foreach ($error->get_error_codes() as $code) {
+            $messages = $error->get_error_messages($code);
+            $data     = $error->get_error_data($code);
+
+            foreach ($messages as $message) {
+                $entry = 'WP_Error ' . $code . ': ' . $message;
+                if (!empty($data)) {
+                    $json  = function_exists('wp_json_encode') ? wp_json_encode($data) : json_encode($data);
+                    $entry .= ' | Data: ' . $json;
+                }
+                self::log($entry);
+            }
+        }
+    }
+
     public static function get_log_file()
     {
         if (self::$log_file === null) {
