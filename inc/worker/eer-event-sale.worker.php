@@ -131,8 +131,12 @@ class EER_Worker_Event_Sale {
 			}
 		}
 
-		return count($eer_reg_errors->get_error_messages()) === 0;
-	}
+                $valid = count($eer_reg_errors->get_error_messages()) === 0;
+                if (!$valid && class_exists('EER_Debug')) {
+                        EER_Debug::log_wp_error($eer_reg_errors);
+                }
+                return $valid;
+        }
 
 
 	private function eer_get_valid_data($data, $limit_validation = true) {
