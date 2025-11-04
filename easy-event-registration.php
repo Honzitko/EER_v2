@@ -245,6 +245,7 @@ if (!class_exists('Easy_Event_Registration')) {
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-model-settings.class.php';
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-settings.class.php';
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-shortcodes.class.php';
+			require_once EER_PLUGIN_PATH . '/inc/class/eer-blocks.class.php';
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-sl-plugin-updater.class.php';
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-tags.class.php';
 			require_once EER_PLUGIN_PATH . '/inc/class/eer-user.class.php';

@@ -6,12 +6,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class EER_Worker_Event {
 
-	public static function eer_process_event_callback( $data ) {
-		if ( isset( $data['event_id'] ) && ! empty( $data['event_id'] ) ) {
-			do_action( 'eer_event_update', $data['event_id'], self::prepare_data( $data, isset( $data['event_id'] ) ), $data );
-		} else {
-			do_action( 'eer_event_add', self::prepare_data( $data ), $data );
-		}
+        /**
+         * Tracks the last event ID processed.
+         *
+         * @var int|null
+         */
+        private static $last_event_id = null;
+
+        public static function eer_process_event_callback( $data ) {
+                self::$last_event_id = null;
+
+                if ( isset( $data['event_id'] ) && ! empty( $data['event_id'] ) ) {
+                        do_action( 'eer_event_update', $data['event_id'], self::prepare_data( $data, isset( $data['event_id'] ) ), $data );
+                } else {
+                        do_action( 'eer_event_add', self::prepare_data( $data ), $data );
+                }
 	}
 
 
@@ -19,11 +28,12 @@ class EER_Worker_Event {
 		global $wpdb;
 		$result = $wpdb->insert( $wpdb->prefix . 'eer_events', $data );
 
-		if ( $result !== false ) {
-			$data['event_id'] = $wpdb->insert_id;
+                if ( $result !== false ) {
+                        $data['event_id'] = $wpdb->insert_id;
+                        self::$last_event_id = intval( $data['event_id'] );
 
-			if ( isset( $raw_data['event_manager'] ) ) {
-				foreach ( $raw_data['event_manager'] as $key => $user_id ) {
+                        if ( isset( $raw_data['event_manager'] ) ) {
+                                foreach ( $raw_data['event_manager'] as $key => $user_id ) {
 					/*if ( user_can( intval( $user_id ), 'eer_partial_events_view' ) && empty( EER()->event_manager->eer_get_event_manager( $data['event_id'], $user_id ) ) {
 						$wpdb->insert( $wpdb->prefix . 'eer_event_managers', [
 							'user_id'  => intval( $user_id ),
@@ -43,21 +53,24 @@ class EER_Worker_Event {
 				}
 			}*/
 
-			do_action( 'eer_module_event_add', $raw_data );
-		}
-	}
+                        do_action( 'eer_module_event_add', $raw_data );
+                        do_action( 'eer_event_added', $data['event_id'], $data, $raw_data );
+                }
+        }
 
 
-	public static function update_event_action( $event_id, $data, $raw_data ) {
+        public static function update_event_action( $event_id, $data, $raw_data ) {
 		global $wpdb;
 
-		$wpdb->update( $wpdb->prefix . 'eer_events', $data, [
-			'id' => $event_id,
-		] );
+                $wpdb->update( $wpdb->prefix . 'eer_events', $data, [
+                        'id' => $event_id,
+                ] );
 
-		$managers = [];
-		if ( isset( $raw_data['event_manager'] ) ) {
-			foreach ( $raw_data['event_manager'] as $key => $user_id ) {
+                self::$last_event_id = intval( $event_id );
+
+                $managers = [];
+                if ( isset( $raw_data['event_manager'] ) ) {
+                        foreach ( $raw_data['event_manager'] as $key => $user_id ) {
 				$user_id = intval( $user_id );
 				/*if ( user_can( intval( $user_id ), 'eer_partial_events_view' ) ) {
 					if ( empty( EER()->event_manager->eer_get_event_manager( $event_id, $user_id ) ) ) {
@@ -72,8 +85,18 @@ class EER_Worker_Event {
 			}
 		}
 
-		do_action( 'eer_module_event_update', $event_id, $raw_data );
-	}
+                do_action( 'eer_module_event_update', $event_id, $raw_data );
+        }
+
+
+        /**
+         * Returns the ID of the last created or updated event.
+         *
+         * @return int|null
+         */
+        public static function get_last_event_id() {
+                return self::$last_event_id;
+        }
 
 
 	private static function prepare_data( $data, $is_update = false ) {
