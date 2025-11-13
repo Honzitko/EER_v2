@@ -1,3 +1,45 @@
+.eer-event-sale-block {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.eer-event-sale-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.eer-event-sale-block__title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.eer-event-sale-block__event-id {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.eer-event-sale-block__intro {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.wp-block-easy-event-registration-event-sale .eer-tickets-sale-wrapper {
+  margin-top: 1.25rem;
+}
+
 .eer-clearfix:after {
   visibility: hidden;
   display: block;
