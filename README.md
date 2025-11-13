@@ -188,3 +188,31 @@ php tests/debug_demo.php
 
 The script writes a sample entry to `tests/debug.log` so you can confirm that
 debugging is working.
+
+## Shortcode customization
+
+The `[eer_event_sale]` shortcode accepts optional presentation attributes so you can
+match the embedded form with the surrounding layout without switching to the
+Gutenberg block. All parameters are optional and can be combined as needed:
+
+| Attribute | Description |
+| --- | --- |
+| `show_title="true"` | Display the event title above the form. |
+| `custom_title="Text"` | Override the event title with custom copy (requires `show_title`). |
+| `show_event_id="true"` | Render the numeric event ID badge next to the title. |
+| `intro_text="<p>HTML...</p>"` | Add supporting copy before the registration form. |
+| `background="#f7f7f7"` | Set a background color (supports hex codes or CSS variables). |
+| `text_color="#111"` | Override the text color for the wrapper. |
+| `padding="32"` | Apply padding (in pixels) around the form. |
+| `border_radius="16"` | Round wrapper corners (in pixels). |
+| `show_border="true"` | Enable the border defined by `border_color` and `border_width`. |
+| `border_color="#ddd"` | Customize the border color (hex or CSS variable). |
+| `border_width="2"` | Adjust the border thickness in pixels. |
+| `shadow="true"` | Add a soft drop shadow to the wrapper. |
+| `wrapper_class="my-class"` | Append custom CSS classes to the outer wrapper. |
+
+Example usage:
+
+```
+[eer_event_sale event="123" show_title="true" intro_text="<p>Secure your spot today.</p>" background="#ffffff" padding="32" shadow="true"]
+```

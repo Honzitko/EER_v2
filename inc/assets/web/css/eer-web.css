@@ -1,4 +1,7 @@
-.eer-event-sale-block {
+
+.eer-event-sale-block,
+.eer-event-sale-shortcode {
+
   position: relative;
   margin-bottom: 2rem;
 }
